@@ -12,8 +12,8 @@ pipeline {
             steps {
                 echo " ============== start building image =================="
                 sh 'ls -l'
-                sh 'ls -l myblog'
-                dir ('myblog/app') {
+                sh 'ls -l app'
+                dir ('app') {
                         sh 'pwd'
                         sh 'ls -l'
                 	sh 'docker build -t quay.io/rasulkarimov/myblog:latest . '
