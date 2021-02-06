@@ -11,7 +11,7 @@ pipeline {
         stage("create docker image") {
             steps {
                 echo " ============== start building image =================="
-                dir ('myblog/app]') {
+                dir ('myblog/app') {
                 	sh 'docker build -t quay.io/myblog:latest . '
                 }
             }
