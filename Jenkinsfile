@@ -17,7 +17,7 @@ pipeline {
                 echo " ============== docker login =================="
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-rasulkarimov', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh """
-                    sudo docker login -u $USERNAME -p $PASSWORD quay.io
+                    docker login -u $USERNAME -p $PASSWORD quay.io
                     """
                 }
             }
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 echo " ============== start building image =================="
                 dir ('app') {
-                	sh 'sudo docker build -t quay.io/rasulkarimov/myblog:latest . '
+                	sh 'docker build -t quay.io/rasulkarimov/myblog:latest . '
                 }
             }
         }
@@ -34,7 +34,7 @@ pipeline {
             steps {
                 echo " ============== start pushing image =================="
                 sh '''
-                sudo docker push quay.io/rasulkarimov/myblog:latest
+                docker push quay.io/rasulkarimov/myblog:latest
                 '''
             }    
         }        
