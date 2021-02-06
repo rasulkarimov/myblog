@@ -11,6 +11,8 @@ pipeline {
         stage("create docker image") {
             steps {
                 echo " ============== start building image =================="
+                sh 'ls -l'
+                sh 'ls -l myblog'
                 dir ('myblog/app') {
                         sh 'pwd'
                         sh 'ls -l'
