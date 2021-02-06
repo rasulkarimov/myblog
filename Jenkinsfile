@@ -18,6 +18,7 @@ pipeline {
                 	sh 'docker build -t quay.io/rasulkarimov/myblog:latest . '
                 }
             }
+        }
         stage("docker push") {
             steps {
                 echo " ============== start pushing image =================="
