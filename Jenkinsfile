@@ -12,7 +12,9 @@ pipeline {
             steps {
                 echo " ============== start building image =================="
                 dir ('myblog/app') {
-                	sh 'docker build -t quay.io/myblog:latest . '
+                        sh 'pwd'
+                        sh 'ls -l'
+                	sh 'docker build -t quay.io/rasulkarimov/myblog:latest . '
                 }
             }
         }        
