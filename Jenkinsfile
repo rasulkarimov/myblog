@@ -12,12 +12,12 @@ pipeline {
     }
     
     stages {
-        stage("docker login") {
+        stage("sudo docker login") {
             steps {
                 echo " ============== docker login =================="
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-rasulkarimov', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh """
-                    docker login -u $USERNAME -p $PASSWORD quay.io
+                    sudo docker login -u $USERNAME -p $PASSWORD quay.io
                     """
                 }
             }
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 echo " ============== start building image =================="
                 dir ('app') {
-                	sh 'docker build -t quay.io/rasulkarimov/myblog:latest . '
+                	sh 'sudo docker build -t quay.io/rasulkarimov/myblog:latest . '
                 }
             }
         }
@@ -34,7 +34,7 @@ pipeline {
             steps {
                 echo " ============== start pushing image =================="
                 sh '''
-                docker push quay.io/rasulkarimov/myblog:latest
+                sudo docker push quay.io/rasulkarimov/myblog:latest
                 '''
             }    
         }        
