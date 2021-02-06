@@ -8,21 +8,14 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("docker login") {
-            steps {
-                echo " ============== docker login =================="
-                echo "Test line"
-            }
-        }
         stage("create docker image") {
             steps {
                 echo " ============== start building image =================="
+                dir ('myblog/app]') {
+                	sh 'docker build -t quay.io/myblog:latest . '
+                }
             }
-        }
-        stage("docker push") {
-            steps {
-                echo " ============== start pushing image =================="
-            }
-        }
+        }        
+
     }
 }
