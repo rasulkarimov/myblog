@@ -25,12 +25,20 @@ pipeline {
         stage("create docker image") {
             steps {
                 echo " ============== start building image =================="
-                script {
-                    def customImage = docker.build("rasulkarimov/myblog:latest", "./app")
-                    customImage.push()
-                }    
+                dir ('app') {
+                	sh 'docker build -t rasulkarimov/myblog:latest . '
+                }
             }
         }
-    }
+        stage("docker push") {
+            steps {
+                echo " ============== start pushing image =================="
+                sh '''
+                sleep 360
+                #docker push rasulkarimov/myblog:latest
+                '''
+            }    
+        }        
 
+    }
 }
