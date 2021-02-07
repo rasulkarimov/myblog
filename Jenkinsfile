@@ -34,7 +34,7 @@ pipeline {
             steps {
                 echo " ============== start pushing image =================="
                 sh '''
-                #sleep 360
+                sleep 360
                 docker push rasulkarimov/myblog:latest
                 '''
             }    
